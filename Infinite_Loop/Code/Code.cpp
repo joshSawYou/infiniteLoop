@@ -2,15 +2,19 @@
 //
 
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 int main()
 {
 	int choice = 0;
 
-	string name = "";
-	string age = "";
-	string occup = "";
+	string name;
+	string age;
+	string occup;
+
+
 
 	while (choice != -1)
 	{
@@ -26,16 +30,31 @@ int main()
 		switch (choice)
 		{
 		case 1:
-			cout << "What is your Name: ";
-			cin >> name;
+			std::cout << "What is your Name: ";
+			/*Solution added here incase of full name.
+			The solution is the next two lines.*/
+			cin.ignore();
+			getline(cin, name);
 			break;
 		case 2:
 			cout << "What is your Age? ";
-			cin >> age;
+			/*Solution added here incase of someone typing out with space (Example: Twenty Seven).
+			The solution is the next two lines.*/
+			cin.ignore();
+			getline(cin, age);
 			break;
 		case 3:
 			cout << "What is your Occupation? ";
-			cin >> occup;
+			/*Solution added here incase of multiple worded occupation.
+			The solution is the next two lines.*/
+
+			/*The MAIN problem was here when it simply had "cin >> occup" because it 
+			would NOT ready anything past the first word. I say this is the "main" problem because this was
+			the only place in your test cases wehre you explictely mentioned to try multiple words and that is what showed us the infinite loop.
+			Once I realized this was the probelm, I decided to add the solution to all cases because
+			all cases could have instances where the user could input multiple words. */
+			cin.ignore();
+			getline(cin, occup);
 			break;
 		default:
 			// Assume Invalid Menu Choice
